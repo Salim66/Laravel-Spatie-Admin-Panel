@@ -6,11 +6,11 @@
     </x-slot>
 
     <div class="m-6">
-        @role('admin|writer')
+        @hasanyrole('admin|writer')
         <div class="w-full mb-2">
-            <a href="" class="m-2 p-2 dark:bg-green-400 rounded dark:text-gray-200">Create Post</a>
+            <a href="{{ route('posts.create') }}" class="m-2 p-2 dark:bg-green-400 rounded dark:text-gray-200">Create Post</a>
         </div>
-        @endrole
+        @endhasanyrole
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full dark:text-gray-200 sm:px-6 lg:px-8">
               <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -20,9 +20,9 @@
                       <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Id</th>
                       <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Title</th>
                       <th scope="col" class="relative px-6 py-3">
-                        @role('admin|editor')  
+                        @hasanyrole('admin|editor')  
                         Edit
-                        @endrole
+                        @endhasanyrole
                       </th>
                       
                     </tr>
@@ -36,12 +36,12 @@
                       <td class="px-6 py-4 whitespace-nowrap">{{ $post->id }}</td>
                       <td class="px-6 py-4 whitespace-nowrap">{{ $post->title }}</td>
                       <td class="px-6 py-4 text-right text-sm">
-                        @role('admin|editor')
-                            <a href="" class="m-2 p-2 dark:bg-green-400 rounded">Edit</a>
-                        @endrole
-                        @role('admin|writer|editor|publisher')
+                        @hasanyrole('admin|editor')
+                            <a href="{{ route('posts.edit', $post->id) }}" class="m-2 p-2 dark:bg-green-400 rounded">Edit</a>
+                        @endhasanyrole
+                        @hasanyrole('admin|writer|editor|publisher')
                             <a href="" class="m-2 p-2 dark:bg-green-400 rounded">Publish</a>
-                        @endrole
+                        @endhasanyrole
                     </td>
                     </tr>
                     @endforeach
