@@ -6,9 +6,11 @@
     </x-slot>
 
     <div class="m-6">
+        @role('admin|writer')
         <div class="w-full mb-2">
             <a href="" class="m-2 p-2 dark:bg-green-400 rounded dark:text-gray-200">Create Post</a>
         </div>
+        @endrole
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full dark:text-gray-200 sm:px-6 lg:px-8">
               <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -17,7 +19,12 @@
                     <tr>
                       <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Id</th>
                       <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Title</th>
-                      <th scope="col" class="relative px-6 py-3">Edit</th>
+                      <th scope="col" class="relative px-6 py-3">
+                        @role('admin|editor')  
+                        Edit
+                        @endrole
+                      </th>
+                      
                     </tr>
                   </thead>
                   <tbody class="bg-white dark:bg-gray-600 dark:text-gray-200 divide-y divide-gray-200">
@@ -29,9 +36,13 @@
                       <td class="px-6 py-4 whitespace-nowrap">{{ $post->id }}</td>
                       <td class="px-6 py-4 whitespace-nowrap">{{ $post->title }}</td>
                       <td class="px-6 py-4 text-right text-sm">
-                        <a href="" class="m-2 p-2 dark:bg-green-400 rounded">Edit</a>
-                        <a href="" class="m-2 p-2 dark:bg-green-400 rounded">Publish</a>
-                      </td>
+                        @role('admin|editor')
+                            <a href="" class="m-2 p-2 dark:bg-green-400 rounded">Edit</a>
+                        @endrole
+                        @role('admin|writer|editor|publisher')
+                            <a href="" class="m-2 p-2 dark:bg-green-400 rounded">Publish</a>
+                        @endrole
+                    </td>
                     </tr>
                     @endforeach
                     <!-- More items... -->
