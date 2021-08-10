@@ -21,15 +21,19 @@
                     </tr>
                   </thead>
                   <tbody class="bg-white dark:bg-gray-600 dark:text-gray-200 divide-y divide-gray-200">
-                    <tr></tr>
+                    @php
+                        $posts = \App\Models\Post::all();
+                    @endphp
+                    @foreach($posts as $post)
                     <tr>
-                      <td class="px-6 py-4 whitespace-nowrap">id</td>
-                      <td class="px-6 py-4 whitespace-nowrap">title</td>
+                      <td class="px-6 py-4 whitespace-nowrap">{{ $post->id }}</td>
+                      <td class="px-6 py-4 whitespace-nowrap">{{ $post->title }}</td>
                       <td class="px-6 py-4 text-right text-sm">
                         <a href="" class="m-2 p-2 dark:bg-green-400 rounded">Edit</a>
                         <a href="" class="m-2 p-2 dark:bg-green-400 rounded">Publish</a>
                       </td>
                     </tr>
+                    @endforeach
                     <!-- More items... -->
                   </tbody>
                 </table>
